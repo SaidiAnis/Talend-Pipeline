@@ -1,65 +1,53 @@
 
-# 📊 Talend Project - Data Integration for a Hypermarket
+# 📊 Talend ETL Project - Hypermarket Pipeline
 
-## 🧩 Project Goal
+This repository contains a complete ETL pipeline project built with **Talend Open Studio**.
 
-This project demonstrates a complete ETL pipeline using **Talend Open Studio**. It extracts Excel data from a hypermarket, transforms it into dimension and fact tables, removes duplicates, and loads everything into a **MySQL** database.
+## 🧩 Overview
 
----
-
-## 🧠 Overview of Job (`j_dwh`)
-
-The main components of the job include:
-
-- 📥 `tFileInputExcel_1`: Loads data from `Hypermarché.xlsx`
-- 📥 `tFileInputExcel_2`: Loads data from `Objectifs_ventes.xlsx`
-- 🧠 `tMap_1`: Data transformation, including lookup and calculated fields
-- 🧾 `tUniqRow`: Deduplicates dimension data
-- 📤 `tDBOutput`: Writes final tables to MySQL
+- Extracts data from Excel files (`Hypermarché.xlsx` and `Objectifs_ventes.xlsx`)
+- Transforms and maps data to dimension and fact tables using `tMap`
+- Deduplicates dimension tables
+- Loads the result into a MySQL database
 
 ---
 
-## 📂 Input Files
+## 📁 Project Structure
 
-- `C:/Data/Hypermarché.xlsx`
-- `C:/Data/Objectifs_ventes.xlsx`
-
-Both are read using the 2007 Excel format, from the first row and across all sheets.
-
----
-
-## 🔄 Mapping Logic in tMap
-
-### Input Flows
-- `row1`: Main data from the hypermarket Excel
-- `row2`: Lookup data from the sales objectives Excel
-
-### Lookup Join
-- Join Model: `Inner Join`
-- Match Keys: `Categorie`, `Date_de_commande`, `Segment`
-
-### Variables
-- `prix = Double.parseDouble(row1.Montant_des_ventes)`
-
-### Output Tables:
-| Output Table   | Columns Used |
-|----------------|--------------|
-| `dim_client`   | ID_client, Nom_du_client, Region, Pays, Zone_geographique, Ville, Segment |
-| `dim_commande` | ID_commande, Date_de_commande, Date_d_expedition, Mode_d_expedition |
-| `dim_produit`  | ID_produit, Categorie, Sous_categorie, Nom_du_produit, Remise, prix |
-| `table_fait`   | ID_ligne, ID_commande, ID_client, ID_produit, Montant_des_ventes, Profit, Quantite |
+```
+PIPELINE_TALEND/
+├── code/
+├── context/
+├── metadata/
+├── poms/
+├── process/
+├── routes/
+├── data/
+│   ├── Hypermarché.xlsx
+│   └── Objectifs_ventes.xlsx
+├── talend.project
+├── .project
+├── README.md
+└── .gitignore
+```
 
 ---
 
-## 🛢️ MySQL Database Configuration
+## 📥 Prerequisites
 
-### 🐳 Run MySQL via Docker:
+- [Talend Open Studio](https://www.talend.com/products/talend-open-studio/)
+- Java 8+
+- MySQL (or Docker)
+
+---
+
+## 🐳 Quick MySQL Setup (Docker)
 
 ```bash
 docker run --name talend-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=talend_db -p 3306:3306 -d mysql:latest
 ```
 
-### 👤 Create user `berto` with permissions:
+Then connect and create the user:
 
 ```sql
 CREATE USER 'berto'@'%' IDENTIFIED BY 'bertomdp';
@@ -69,7 +57,7 @@ FLUSH PRIVILEGES;
 
 ---
 
-## 🔌 MySQL Connection in Talend
+## 🔌 Talend MySQL Connection Parameters
 
 | Field       | Value       |
 |-------------|-------------|
@@ -79,30 +67,42 @@ FLUSH PRIVILEGES;
 | Username    | berto       |
 | Password    | bertomdp    |
 
-> ❗ Make sure to **remove quotes** from `localhost`, `3306`, and table names in Talend.
+---
+
+## 📂 Required Files
+
+You must place the Excel files in the exact following path **on your computer** so Talend can find them:
+
+```
+C:/Data/Hypermarché.xlsx
+C:/Data/Objectifs_ventes.xlsx
+```
+
+If not, update the paths in the Talend components `tFileInputExcel_1` and `tFileInputExcel_2`.
+
+✅ The files are provided in the `data/` folder of this repo.
 
 ---
 
-## 🗃️ Output Tables in MySQL
+## 🚀 How to Run the Project in Talend
 
-- `Dim_client`
-- `Dim_commande`
-- `Dim_produit`
-- `table_fait`
-
-Each table is set to "Drop and Create" before insertion.
+1. Open Talend Open Studio
+2. Choose "Import Project" → select the `PIPELINE_TALEND` folder or zip
+3. Open the job `j_dwh`
+4. Make sure the Excel files are in `C:/Data/` or update their paths
+5. Click **Run** to execute the job
 
 ---
 
-## 🚀 Execution Steps
+## 📌 Notes
 
-1. Launch Docker MySQL container
-2. Open Talend Studio and job `j_dwh`
-3. Make sure the Excel files are available at `C:/Data/`
-4. Run the job and check MySQL for results
+- Job uses `tMap`, `tUniqRow`, `tDBOutput`, `tFileInputExcel`
+- Data is loaded into: `Dim_client`, `Dim_commande`, `Dim_produit`, `table_fait`
+- Lookup join is made on Category, Date, and Segment
+
 ---
 
-## 🔚 Summary
+## 🧠 Tip for Linux/macOS
 
-This Talend project simulates a real-world data warehouse flow for a retail hypermarket. Data is extracted from Excel files, transformed into star schema structure (dimensions + fact), and persisted into MySQL.
+If you're not on Windows and `C:/Data/` doesn’t exist, place the Excel files anywhere and change the path in `tFileInputExcel` components.
 
