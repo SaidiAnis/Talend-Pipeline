@@ -1,0 +1,16 @@
+# Talend generated/temp files
+.settings/
+documentations/
+images/
+temp/
+sqlPatterns/
+*.log
+
+# IDE files
+*.iml
+*.classpath
+*.project
+*.DS_Store
+
+# OS
+Thumbs.db

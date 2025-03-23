@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:TalendMetadata="http://www.talend.org/metadata/connection/2010" xmlns:orgomg.cwm.resource.record="http:///orgomg/cwm/resource/record.ecore">
+  <TalendMetadata:FileExcelConnection xmi:id="_IZTgEOLvEe6zqacw1aRojg" name="objectifVentes" id="_IZS5AOLvEe6zqacw1aRojg" dataPackage="_IZTgEeLvEe6zqacw1aRojg" Server="Localhost 127.0.0.1" FilePath="D:/UNIVERSITY/USPN/BDA/Talend/examen/Fichier_Exo 1/Objectifs_ventes.xlsx" Encoding="UTF-8" UseHeader="true" HeaderValue="1" FirstLineCaption="true" SheetName="objectif" firstColumn="1" thousandSeparator="','" decimalSeparator="'.'" selectAllSheets="true" sheetList="objectif:w&#xA;">
+    <sheetColumns>A</sheetColumns>
+    <sheetColumns>B</sheetColumns>
+    <sheetColumns>C</sheetColumns>
+    <sheetColumns>D</sheetColumns>
+  </TalendMetadata:FileExcelConnection>
+  <orgomg.cwm.resource.record:RecordFile xmi:id="_IZTgEeLvEe6zqacw1aRojg" name="default" dataManager="_IZTgEOLvEe6zqacw1aRojg">
+    <ownedElement xsi:type="TalendMetadata:MetadataTable" xmi:id="_IZTgEuLvEe6zqacw1aRojg" id="_A8z5UOLvEe6zqacw1aRojg" label="objectiVentes">
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_29RRkOLvEe6zqacw1aRojg" label="Categorie" length="23" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_29RRkeLvEe6zqacw1aRojg" label="Date_de_commande" length="28" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_29RRkuLvEe6zqacw1aRojg" label="Segment" length="23" talendType="id_String" pattern="&quot;dd-MM-yyyy&quot;"/>
+      <feature xsi:type="TalendMetadata:MetadataColumn" xmi:id="_29RRk-LvEe6zqacw1aRojg" label="Objectif_de_vente" length="4" talendType="id_Integer" pattern="&quot;dd-MM-yyyy&quot;"/>
+    </ownedElement>
+  </orgomg.cwm.resource.record:RecordFile>
+</xmi:XMI>
