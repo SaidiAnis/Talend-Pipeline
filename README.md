@@ -36,7 +36,7 @@ PIPELINE_TALEND/
 ## 📥 Prerequisites
 
 - [Talend Open Studio](https://www.talend.com/products/talend-open-studio/)
-- Java 8+
+- Java 11+
 - MySQL (or Docker)
 
 ---
