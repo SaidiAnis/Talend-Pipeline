@@ -5,6 +5,8 @@ This repository contains a complete ETL pipeline project built with **Talend Ope
 
 ## 🧩 Overview
 
+![Talend Job Pipeline](illustration/pipeline.png)
+
 - Extracts data from Excel files (`Hypermarché.xlsx` and `Objectifs_ventes.xlsx`)
 - Transforms and maps data to dimension and fact tables using `tMap`
 - Deduplicates dimension tables
